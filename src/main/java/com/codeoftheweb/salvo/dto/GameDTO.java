@@ -18,6 +18,8 @@ public class GameDTO {
         return game;
     }
 
+
+    //Setter
     public void setGame(Game game) {
         this.game = game;
     }
