@@ -1,3 +1,3 @@
 # salvo
 Battleship game, with Spring Boot.
-Frontend utilizando JQuery y CSS y HTML 5.
+Frontend utilises JQuery, CSS and HTML 5.
