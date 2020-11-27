@@ -31,7 +31,8 @@ public class SalvoController {
     @Autowired
     ShipRepository shipRepository;
 
-    /*Creo el mapeo para cada url. Estoy utilizando métodos estáticos, por lo que no es necesario instanciar cada dto.
+    /*Creo el mapeo para cada url. Estoy utilizando métodos estáticos, por lo que no es
+    necesario instanciar cada dto.
     */
     @RequestMapping("/players")
     public List<Map<String, Object>> getPlayerAll(){
