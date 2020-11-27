@@ -14,14 +14,14 @@ public class GameDTO {
         this.game = game;
     }
 
-    public Game getGame() {
-        return game;
-    }
-
-
     //Setter
     public void setGame(Game game) {
         this.game = game;
+    }
+
+    //Getter
+    public Game getGame() {
+        return game;
     }
 
     public static Map<String, Object> makeGameDTO(Game game) {
