@@ -60,7 +60,7 @@ public class SalvoApplication {
 			Salvo salvo13 = new Salvo(3, gameplayer1, Arrays.asList("F1", "G5", "J8"));
 			Salvo salvo22 = new Salvo(3, gameplayer2, Arrays.asList("D1", "D2", "D3"));
 			Salvo salvo23 = new Salvo(3, gameplayer2, Arrays.asList("F5", "F3", "G5"));
-			Salvo salvo3 = new Salvo(3, gameplayer3, Arrays.asList("C1", "C2", "C3"));
+			Salvo salvo3 = new Salvo(3, gameplayer3, Arrays.asList("G1", "C2", "C3"));
 			Salvo salvo4 = new Salvo(3, gameplayer4, Arrays.asList("C1", "C2", "C3"));
 			Salvo salvo5 = new Salvo(3, gameplayer5, Arrays.asList("C1", "C2", "C3"));
 			Salvo salvo6 = new Salvo(3, gameplayer6, Arrays.asList("C1", "C2", "C3"));

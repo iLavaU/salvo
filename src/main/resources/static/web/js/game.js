@@ -1,8 +1,6 @@
 $(function() {
     loadShipsandPlayers();
     loadSalvoes();
-    //loadFriendlySalvoes();
-    //loadEnemySalvoes();
 });
 
 function getParameterByName(name) {
@@ -95,7 +93,7 @@ function loadEnemySalvoes(salvo){
             //$('#table1 '+ '.'+salvoLocation).append(salvo.turn);
         }else{
             $('#table1 '+ '.'+salvoLocation).addClass('salvo');
-            //s$('#table1 '+ '.'+salvoLocation).append(salvo.turn);
+            //$('#table1 '+ '.'+salvoLocation).append(salvo.turn);
         }
     })
 }
