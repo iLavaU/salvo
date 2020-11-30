@@ -58,6 +58,10 @@ public class GamePlayer {
     public Set<Ship> getShips() {
         return ships;
     }
+    public Set<Salvo> getSalvos() {
+        return salvos;
+    }
+
 
     //Setters
     public void setPlayer(Player player) {
@@ -65,6 +69,9 @@ public class GamePlayer {
     }
     public void setGame(Game game) {
         this.game = game;
+    }
+    public void setSalvos(Set<Salvo> salvos) {
+        this.salvos = salvos;
     }
 
     /*public void addShip(Ship ship){

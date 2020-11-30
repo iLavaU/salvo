@@ -2,7 +2,7 @@
     background-color: mediumpurple;
 }
 .ship-piece-lancha{
-    background-color: red;
+    background-color: chartreuse;
 }
 .ship-piece-corbeta{
     background-color: green;
@@ -16,10 +16,9 @@
 .ship-piece-acorazado{
     background-color: brown;
 }
-.ship-piece{
+.ship-piece-default{
     background-color: yellow;
 }
-
 
 .ship-piece-hited{
     background-color: darkmagenta;

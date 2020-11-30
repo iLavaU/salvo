@@ -42,6 +42,9 @@ public class Salvo {
     public List<String> getLocations() {
         return locations;
     }
+    public long getId() {
+        return id;
+    }
 
     //Setters
     public void setTurn(int turn) {
