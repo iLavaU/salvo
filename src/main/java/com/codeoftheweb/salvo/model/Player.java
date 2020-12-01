@@ -4,6 +4,7 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 import org.hibernate.annotations.GenericGenerator;
 
 import javax.persistence.*;
+import java.util.Iterator;
 import java.util.List;
 import java.util.Set;
 
@@ -20,6 +21,9 @@ public class Player {
 
     @OneToMany(mappedBy="player", fetch=FetchType.EAGER)
     private Set<GamePlayer> gamePlayers;
+
+    @OneToMany(mappedBy = "player", fetch = FetchType.EAGER)
+    private Set<Score> scores;
 
     @JsonIgnore
     public List<Game> getGames() {
@@ -46,6 +50,9 @@ public class Player {
     public String getName() {
         return name;
     }
+    public Set<Score> getScores() {
+        return scores;
+    }
 
     //Setters
     public void setGamePlayers(Set<GamePlayer> gamePlayers) {
@@ -57,11 +64,52 @@ public class Player {
     public void setName(String name) {
         this.name = name;
     }
+    public void setScores(Set<Score> scores) {
+        this.scores = scores;
+    }
 
     //toString
     public String toString() {
         return id+" "+name + " " + email;
     }
+
+    public double getTotalScore(){
+        double sum = this.getScores().stream().mapToDouble(Score -> Score.getScore()).sum();
+        return sum;
+    }
+
+    public long getWins(){
+        return this.getScores().stream()
+                .filter(score -> score.getScore() == 1.0D)
+                .count();
+    }
+    public long getLoses(){
+        return this.getScores().stream()
+                .filter(score -> score.getScore() == 0.0D)
+                .count();
+    }
+    public long getTies(){
+        return this.getScores().stream()
+                .filter(score -> score.getScore() == 0.5D)
+                .count();
+    }
+
+
+
+//    public double getWin(Player player){
+//        double wins = 0;
+//        List<Score> scores = player.getScores();
+//        Iterator<Score> iterator = scores.iterator();
+//        while (iterator.hasNext()){
+//            Score score = iterator.next();
+//            if (score.getScore() == 1){
+//                wins += 1;
+//            }
+//        }
+//
+//        return wins;
+//    }
+
     /*public void addGamePlayer(GamePlayer gamePlayer) {
         gamePlayer.setPlayer(this);
         gamePlayers.add(gamePlayer);

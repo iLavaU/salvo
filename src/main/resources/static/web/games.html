@@ -8,8 +8,9 @@
     <body>
 
     <!-- Creo una tabla con bootstrap! Tiene columna para nombres y email. -->
-
-    <table class="table table-bordered">
+    <section>
+        <h2>Game List</h2>
+            <table class="table table-bordered">
         <thead class="text-center">
         <tr >
             <th scope="col" rowspan="2" class="align-middle">Game Id</th>
@@ -24,9 +25,25 @@
             <th scope="col">Email</th>
         </tr>
         </thead>
-        <tbody id="table-body">
+        <tbody id="table-body1">
         </tbody>
     </table>
+    </section>
+
+    <section>
+        <h2>Leaderboard</h2>
+        <table class="table table-bordered">
+            <thead class="text-center">
+                <tr> <th>Name</th><th>Total</th><th>Won</th><th>Lost</th>
+                <th>Tied</th>
+                </tr>
+            </thead>
+            <tbody id="table-body2">
+            </tbody>
+        </table>    
+    </section>
+
+
 
     <ol id="games-list">
     </ol>

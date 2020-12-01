@@ -1,8 +1,9 @@
 $(function() {
-    loadData()
+    loadGamesData();
+    loadLeaderboardData();
 });
 
-function updateView(data) {
+function updateGamesView(data) {
 
     //Comente lo anterior por las dudas.
 
@@ -18,18 +19,38 @@ function updateView(data) {
                  '<td>' + new Date(game.created).toLocaleString() + '</td>' +
                  game.gamePlayers.map(function(p) { return '<td>' + p.player.nombre + '</td>' + '<td>' + p.player.email + '</td>'}).join('') + '</tr>';
                  }).join('');
-    document.getElementById("table-body").innerHTML = htmlTable;
+    document.getElementById("table-body1").innerHTML = htmlTable;
   //document.getElementById("games-list").innerHTML = htmlList;
 }
 
-// load and display JSON sent by server for /players
 
-function loadData() {
-    $.get("/api/games")
-        .done(function(data) {
-          updateView(data);
-        })
-        .fail(function( jqXHR, textStatus ) {
-          alert( "Failed: " + textStatus );
-        });
+function updateLeaderboardView(data){
+data.sort((a, b) =>  parseFloat(b.score.total)-parseFloat(a.score.total))
+console.log(data)
+let htmlTable = data.map(function (scores) {
+  return   '<tr><td>' + scores.email + '</td>' + '<td>' + scores.score.total + '</td>' + '<td>' + scores.score.won + '</td>' + '<td>' + scores.score.lost + '</td>' + '<td>' + scores.score.tied + '</td>'+ '</tr>';}).join('');
+  document.getElementById("table-body2").innerHTML = htmlTable;
+}
+
+
+// load and display JSON sent by server for /games
+function loadGamesData() {
+  $.get("/api/games")
+      .done(function(data) {
+        updateGamesView(data);
+      })
+      .fail(function( jqXHR, textStatus ) {
+        alert( "Failed: " + textStatus );
+      });
+}
+
+// load and display JSON sent by server for /leaderboard
+function loadLeaderboardData(){
+    $.get("/api/leaderboard")
+      .done(function(data) {
+        updateLeaderboardView(data);
+      })
+      .fail(function( jqXHR, textStatus ) {
+        alert( "Failed: " + textStatus );
+      });
 }

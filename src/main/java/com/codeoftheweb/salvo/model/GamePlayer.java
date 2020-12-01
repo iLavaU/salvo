@@ -31,6 +31,10 @@ public class GamePlayer {
 
     private Date joinDate;
 
+//    public Score getScore(){
+//        this.getPlayer().getScores()
+//    }
+
     //Constructores
     public GamePlayer() {
         this.joinDate = new Date();

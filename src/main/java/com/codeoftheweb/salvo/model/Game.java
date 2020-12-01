@@ -22,6 +22,12 @@ public class Game {
     @OrderBy
     private Set<GamePlayer> gamePlayers;
 
+    @OneToMany(mappedBy = "game", fetch = FetchType.EAGER)
+    private Set<Score> scores;
+
+
+
+
     public List<Player> getPlayers() {
         return gamePlayers.stream().map(sub -> sub.getPlayer()).collect(toList());
     }
@@ -36,14 +42,14 @@ public class Game {
     }
 
     //Getters
-    public Set<GamePlayer> getGamePlayers() {
-        return gamePlayers;
-    }
     public long getId() {
         return id;
     }
     public Date getCreated() {
         return created;
+    }
+    public Set<GamePlayer> getGamePlayers() {
+        return gamePlayers;
     }
 
     //Setters
@@ -53,6 +59,13 @@ public class Game {
     public void setCreated (Date created) {
         this.created = created;
     }
+    public Set<Score> getScores() {
+        return scores;
+    }
+    public void setScores(Set<Score> scores) {
+        this.scores = scores;
+    }
+
 
     /*public void addGamePlayer(GamePlayer gamePlayer) {
         gamePlayer.setGame(this);

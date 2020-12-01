@@ -50,6 +50,16 @@ public class SalvoController {
                 .collect(Collectors.toList());
     }
 
+    @RequestMapping("/leaderboard")
+    public List<Map<String, Object>> getScoreAll(){
+        return playerRepository.findAll()
+                .stream()
+                .map(player -> {
+                    PlayerDTO playerDTO = new PlayerDTO(player);
+                    return playerDTO.makePlayerScoreDTO();})
+                .collect(Collectors.toList());
+    }
+
     @RequestMapping("/gamePlayers")
     public List<Map<String, Object>> getGameplayersAll(){
         return gamePlayerRepository.findAll()
