@@ -9,6 +9,7 @@ $(function() {
     $('.submitbutton').click(function () {
         submitButton = $(this).attr('name')
     });
+//    playLoginSound();
 
 });
 
@@ -25,6 +26,8 @@ $('#login-form').on('submit', function (event) {
                 // $("#username").val("");
                 $("#password").val("");
                 updateJson();
+                playLoginSound();
+
 
             })
             .fail(function() {
@@ -56,6 +59,7 @@ $('#login-form').on('submit', function (event) {
                         $("#username").val("");
                         $("#password").val("");
                         updateJson();
+                        
                     })
                     .fail(function() {
                         console.log("login failed");
