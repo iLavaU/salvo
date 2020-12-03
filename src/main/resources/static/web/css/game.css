@@ -1,23 +1,5 @@
-.ship-piece-carrier{
+.ship-piece{
     background-color: mediumpurple;
-}
-.ship-piece-lancha{
-    background-color: chartreuse;
-}
-.ship-piece-corbeta{
-    background-color: green;
-}
-.ship-piece-destructor{
-    background-color: blue;
-}
-.ship-piece-submarino{
-    background-color: black;
-}
-.ship-piece-acorazado{
-    background-color: brown;
-}
-.ship-piece-default{
-    background-color: yellow;
 }
 
 .ship-piece-hited{
@@ -25,5 +7,9 @@
 }
 
 .salvo{
+
+}
+
+.salvo-piece{
     background-color: crimson;
 }
