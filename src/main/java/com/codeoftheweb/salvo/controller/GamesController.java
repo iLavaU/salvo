@@ -30,10 +30,8 @@ public class GamesController {
 
     @Autowired
     GameRepository gameRepository;
-
     @Autowired
     GamePlayerRepository gamePlayerRepository;
-
     @Autowired
     PlayerRepository playerRepository;
 
@@ -55,7 +53,6 @@ public class GamesController {
 
         return new ResponseEntity<>(dto, HttpStatus.CREATED);
     }
-
     @RequestMapping(value = "/games", method = RequestMethod.GET)
     public Map<String, Object> getGameAll(Authentication authentication){
         Map<String, Object> dto = new LinkedHashMap<>();

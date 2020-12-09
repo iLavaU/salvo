@@ -27,8 +27,6 @@ import java.util.stream.Collectors;
 public class AppController {
 
     //Conecto los repositorios.
-
-
     @Autowired
     GameRepository gameRepository;
     @Autowired
@@ -46,8 +44,6 @@ public class AppController {
                 .map(player -> PlayerDTO.makePlayerDTO(player) )
                 .collect(Collectors.toList());
     }
-
-
     @RequestMapping(value = "/game/{idGame}/players", method = RequestMethod.POST)
     public ResponseEntity<Map<String, Object>> joinGame(@PathVariable long idGame, Authentication authentication){
         if (Util.isGuest(authentication)){
@@ -77,7 +73,6 @@ public class AppController {
             return new ResponseEntity<>(Util.makeMap("error", "Game is full."), HttpStatus.FORBIDDEN);
         }
     }
-
     @RequestMapping(path = "/gamePlayers", method = RequestMethod.GET)
     public List<Map<String, Object>> getGameplayersAll(){
         return gamePlayerRepository.findAll()
@@ -85,7 +80,6 @@ public class AppController {
                 .map(gamePlayer -> GamePlayerDTO.makeGamePlayerDTO(gamePlayer))
                 .collect(Collectors.toList());
     }
-
     @RequestMapping(path = "/game_view/{idgame_player}", method = RequestMethod.GET)
     private ResponseEntity<Map<String, Object>> getGamePlayerAll(@PathVariable long idgame_player, Authentication authentication){
         if (Util.isGuest(authentication)){
@@ -102,7 +96,6 @@ public class AppController {
                     " and want to see " + gameplayer.getPlayer().getName() + "'s board."), HttpStatus.FORBIDDEN);
         }
     }
-
     @RequestMapping("/leaderboard")
     public List<Map<String, Object>> getScoreAll(){
         return playerRepository.findAll()
@@ -112,5 +105,4 @@ public class AppController {
                     return playerDTO.makePlayerScoreDTO();})
                 .collect(Collectors.toList());
     }
-
 }

@@ -97,12 +97,12 @@ public class SalvoApplication {
 
 
 			//Ships
-			Ship destructor1 = new Ship("destructor", Arrays.asList("A1", "A2", "A3"),gameplayer1);
-			Ship submarino1 = new Ship("submarino", Arrays.asList("B1", "B2", "B3"),gameplayer1);
-			Ship acorazado1 = new Ship("acorazado", Arrays.asList("C1", "C2", "C3"),gameplayer1);
+			Ship destructor1 = new Ship("destroyer", Arrays.asList("A1", "A2", "A3"),gameplayer1);
+			Ship submarino1 = new Ship("submarine", Arrays.asList("B1", "B2", "B3"),gameplayer1);
+			Ship acorazado1 = new Ship("battleship", Arrays.asList("C1", "C2", "C3"),gameplayer1);
 			Ship destructor2 = new Ship("carrier", Arrays.asList("D2", "D3", "D4","D5"),gameplayer2);
-			Ship submarino2 = new Ship("corveta", Arrays.asList("F3", "F4", "F5"),gameplayer2);
-			Ship acorazado2 = new Ship("lancha", Arrays.asList("D7", "D8"),gameplayer2);
+			Ship submarino2 = new Ship("destroyer", Arrays.asList("F3", "F4", "F5"),gameplayer2);
+			Ship acorazado2 = new Ship("patrolboat", Arrays.asList("D7", "D8"),gameplayer2);
 
 			//Salvos
 			Salvo salvo11 = new Salvo(3, gameplayer1, Arrays.asList("C1", "C2", "C3"));
