@@ -32,7 +32,7 @@ public class GamePlayerDTO {
         hits.put("opponent", new ArrayList<>());
 
         dto.put("id", gamePlayer.getGame().getId());
-        dto.put("created", gamePlayer.getGame().getId());
+        dto.put("created", gamePlayer.getGame().getCreated());
         dto.put("gamePlayers", gamePlayer.getGame().getGamePlayers()
                 .stream()
                 .map(gamePlay ->makeGamePlayerDTO(gamePlay))

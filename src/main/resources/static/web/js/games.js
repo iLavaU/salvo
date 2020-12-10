@@ -26,6 +26,7 @@ $('.login-form').on('submit', function (event) {
                 $("#password").val("");
                 updateJson();
                 $("#createGameForm").show();
+                playLoginSound();
 
             })
             .fail(function() {
@@ -57,6 +58,8 @@ $('.login-form').on('submit', function (event) {
                         $("#newUsername").val("");
                         $("#newPassword").val("");
                         $("#newName").val("");
+                        closeMyModal();
+                        playLoginSound();
                         updateJson();
 
                     })
@@ -323,9 +326,11 @@ function showScoreBoard(playersArray) {
                 $("<td class='textCenter'>" + countTied + '</td>').appendTo(row);
             }
         }
-    }
+}
 
-
+function closeMyModal(){
+    $("#myModal").modal('toggle');
+}
 
 
 
