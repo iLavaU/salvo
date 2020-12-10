@@ -318,7 +318,6 @@ function postShipLocations (postUrl) {
                     refreshGameView(makeUrl());
 
                 }, 4000);
-
         })
         .fail(function (response) {
             console.log(response);

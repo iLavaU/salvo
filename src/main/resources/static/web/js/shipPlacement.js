@@ -135,7 +135,7 @@ function renderPositions(positions) {
         }
         shipObject = {
             type: positions[i].id,
-            shipLocations: shipPosition
+            locations: shipPosition
         }
         shipData.push(shipObject);
 
@@ -143,8 +143,6 @@ function renderPositions(positions) {
     console.log(shipData);
     shipsJSON = JSON.stringify(shipData);
 }
-
-
 
 function shipPositionMsg(ship) {
 

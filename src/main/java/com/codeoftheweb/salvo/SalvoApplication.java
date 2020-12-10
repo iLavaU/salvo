@@ -143,12 +143,12 @@ public class SalvoApplication {
 			gpRepository.save(gameplayer10);
 			gpRepository.save(gameplayer11);
 			gpRepository.save(gameplayer12);
-			shRepository.save(destructor1);
-			shRepository.save(submarino1);
-			shRepository.save(acorazado1);
-			shRepository.save(destructor2);
-			shRepository.save(submarino2);
-			shRepository.save(acorazado2);
+//			shRepository.save(destructor1);
+//			shRepository.save(submarino1);
+//			shRepository.save(acorazado1);
+//			shRepository.save(destructor2);
+//			shRepository.save(submarino2);
+//			shRepository.save(acorazado2);
 			saRepository.save(salvo11);
 			saRepository.save(salvo12);
 			saRepository.save(salvo13);

@@ -1,6 +1,5 @@
 package com.codeoftheweb.salvo.controller;
 
-import com.codeoftheweb.salvo.dto.GameDTO;
 import com.codeoftheweb.salvo.dto.GamePlayerDTO;
 import com.codeoftheweb.salvo.dto.PlayerDTO;
 import com.codeoftheweb.salvo.model.Game;
@@ -9,14 +8,11 @@ import com.codeoftheweb.salvo.repository.GameRepository;
 import com.codeoftheweb.salvo.model.GamePlayer;
 import com.codeoftheweb.salvo.repository.GamePlayerRepository;
 import com.codeoftheweb.salvo.repository.PlayerRepository;
-import com.codeoftheweb.salvo.repository.ShipRepository;
 import com.codeoftheweb.salvo.util.Util;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.security.authentication.AnonymousAuthenticationToken;
 import org.springframework.security.core.Authentication;
-import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.*;
@@ -37,13 +33,6 @@ public class AppController {
     /*Creo el mapeo para cada url. Estoy utilizando métodos estáticos, por lo que no es
     necesario instanciar cada dto.
     */
-    @RequestMapping("/players")
-    public List<Map<String, Object>> getPlayerAll(){
-        return playerRepository.findAll()
-                .stream()
-                .map(player -> PlayerDTO.makePlayerDTO(player) )
-                .collect(Collectors.toList());
-    }
     @RequestMapping(value = "/game/{idGame}/players", method = RequestMethod.POST)
     public ResponseEntity<Map<String, Object>> joinGame(@PathVariable long idGame, Authentication authentication){
         if (Util.isGuest(authentication)){
