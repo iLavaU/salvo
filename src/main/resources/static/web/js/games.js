@@ -12,7 +12,7 @@ $(function() {
 
 });
 
-$('#login-form').on('submit', function (event) {
+$('.login-form').on('submit', function (event) {
     event.preventDefault();
 
     if (submitButton == "login") {
@@ -42,22 +42,23 @@ $('#login-form').on('submit', function (event) {
 
     } else if (submitButton == "signup") {
         $.post("/api/players",
-            { email: $("#username").val(),
-                password: $("#password").val() })
+            { email: $("#newUsername").val(),
+                password: $("#newPassword").val(), name: $("#newName").val()})
             .done(function(data) {
                 console.log("signup ok");
                 console.log(data);
                 $('#signupSuccess').show( "slow" ).delay(2000).hide( "slow" );
                 $.post("/api/login",
-                    { name: $("#username").val(),
-                        pwd: $("#password").val() })
+                    { name: $("#newUsername").val(),
+                        pwd: $("#newPassword").val() })
                     .done(function() {
                         console.log("login ok");
                         $('#loginSuccess').show( "slow" ).delay(2500).hide( "slow" );
-                        $("#username").val("");
-                        $("#password").val("");
+                        $("#newUsername").val("");
+                        $("#newPassword").val("");
+                        $("#newName").val("");
                         updateJson();
-
+                        closeMyModal();
                     })
                     .fail(function() {
                         console.log("login failed");
@@ -171,6 +172,10 @@ function updateView() {
 
         }
 }
+
+function closeMyModal() {
+    $('#myModal').modal('toggle');
+ }
 
 function showGamesTable(gamesData) {
         // let mytable = $('<table></table>').attr({id: "gamesTable", class: ""});

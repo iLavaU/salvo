@@ -45,7 +45,7 @@ public class SalvoApplication {
 			// save a couple of players, games, gameplayers, ships, salvos and scores.
 
 			//Players
-			Player jack = new Player("Jack@gmail.com", "Jack",passwordEncoder().encode("1234"));
+/*			Player jack = new Player("Jack@gmail.com", "Jack",passwordEncoder().encode("1234"));
 			Player chloe = new Player("Chloe@gmail.com", "Chloe",passwordEncoder().encode("1234"));
 			Player michelle = new Player("Michelle@gmail.com", "Michelle",passwordEncoder().encode("1234"));
 			Player john = new Player("John@gmail.com", "John",passwordEncoder().encode("1234"));
@@ -169,7 +169,7 @@ public class SalvoApplication {
 			scRepository.save(score35);
 			scRepository.save(score45);
 			scRepository.save(score56);
-			scRepository.save(score66);
+			scRepository.save(score66);*/
 
 		};
 	}
