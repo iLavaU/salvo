@@ -24,11 +24,11 @@ public class PlayerController {
 
     @RequestMapping(path = "/players", method = RequestMethod.POST)
     public ResponseEntity<Object> register(
-            //@RequestParam String userName,
+            @RequestParam String name,
             @RequestParam String email,
             @RequestParam String password) {
 
-        if (email.isEmpty() || /*email.isEmpty() ||*/ password.isEmpty()) {
+        if (email.isEmpty() || name.isEmpty() || password.isEmpty()) {
             return new ResponseEntity<>("Missing data", HttpStatus.FORBIDDEN);
         }
 
@@ -36,7 +36,7 @@ public class PlayerController {
             return new ResponseEntity<>("Name already in use", HttpStatus.FORBIDDEN);
         }
 
-        playerRepository.save(new Player(email, passwordEncoder.encode(password)));
+        playerRepository.save(new Player(email, name, passwordEncoder.encode(password)));
         return new ResponseEntity<>(HttpStatus.CREATED);
     }
 
