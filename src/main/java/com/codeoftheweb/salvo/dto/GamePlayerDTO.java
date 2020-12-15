@@ -1,7 +1,7 @@
 package com.codeoftheweb.salvo.dto;
 
 import com.codeoftheweb.salvo.model.GamePlayer;
-import com.codeoftheweb.salvo.model.Salvo;
+import com.codeoftheweb.salvo.util.Util;
 
 import java.util.ArrayList;
 import java.util.LinkedHashMap;
@@ -24,12 +24,9 @@ public class GamePlayerDTO {
         this.gamePlayer = gamePlayer;
     }
 
-    public static Map<String, Object> makeGameViewDTO(GamePlayer gamePlayer){
+    public static Map<String, Object> makeGameViewDTO(GamePlayer gamePlayer) throws Exception {
         Map<String, Object> dto = new LinkedHashMap<>();
-        Map<String, Object> hits = new LinkedHashMap<>();
-
-        hits.put("self", new ArrayList<>());
-        hits.put("opponent", new ArrayList<>());
+        HitsDTO hitsDTO = new HitsDTO(gamePlayer);
 
         dto.put("id", gamePlayer.getGame().getId());
         dto.put("created", gamePlayer.getGame().getCreated());
@@ -43,13 +40,14 @@ public class GamePlayerDTO {
                 .collect(Collectors.toList()));
         dto.put("salvoes",gamePlayer.getGame().getGamePlayers()
                 .stream()
-                .flatMap(gamePlayer1 -> gamePlayer1.getSalvos()
+                .flatMap(gamePlayer1 -> gamePlayer1.getSalvoes()
                     .stream()
                     .map(salvo -> {SalvoDTO salvoDTO = new SalvoDTO(salvo);
                                     return salvoDTO.makeSalvoDTO();}))
                     .collect(Collectors.toList()));
-        dto.put("hits",hits);
-        dto.put("gameState","PLACESHIPS");
+
+        dto.put("hits", hitsDTO.makeHitsDTO());
+        dto.put("gameState", Util.getGameState(gamePlayer));
         return dto;
     }
 

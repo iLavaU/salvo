@@ -18,6 +18,7 @@ public class ShipDTO {
 
         dto.put("type", ship.getType());
         dto.put("locations", ship.getLocations());
+        dto.put("locationIsHit",ship.getLocationIsHit());
 
         return dto;
     }

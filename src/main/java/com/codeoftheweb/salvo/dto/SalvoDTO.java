@@ -4,6 +4,7 @@ import com.codeoftheweb.salvo.model.Game;
 import com.codeoftheweb.salvo.model.Salvo;
 
 import java.util.LinkedHashMap;
+import java.util.List;
 import java.util.Map;
 
 public class SalvoDTO {
@@ -22,10 +23,10 @@ public class SalvoDTO {
 
     public Map<String, Object> makeSalvoDTO(){
         Map<String, Object> dto = new LinkedHashMap<>();
-
+        List<String> locations = this.salvo.getLocations();
         dto.put("turn", this.salvo.getTurn());
         dto.put("player", this.salvo.getGamePlayer().getPlayer().getId());
-        dto.put("locations", this.salvo.getLocations());
+        dto.put("locations", locations);
 
         return dto;
     }

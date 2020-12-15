@@ -3,8 +3,7 @@ package com.codeoftheweb.salvo.model;
 import org.hibernate.annotations.GenericGenerator;
 
 import javax.persistence.*;
-import java.util.Date;
-import java.util.Set;
+import java.util.*;
 
 @Entity
 public class GamePlayer {
@@ -27,6 +26,7 @@ public class GamePlayer {
     private Set<Ship> ships; //= new HashSet<Ship>();
 
     @OneToMany(mappedBy="gamePlayer", fetch = FetchType.EAGER)
+    @OrderBy(value = "turn ASC")
     private Set<Salvo> salvos;
 
     private Date joinDate;
@@ -40,7 +40,6 @@ public class GamePlayer {
         this.joinDate = new Date();
     }
     public GamePlayer(Game game, Player player) {
-
         this.game = game;
         this.player = player;
         this.joinDate = new Date();
@@ -62,7 +61,7 @@ public class GamePlayer {
     public Set<Ship> getShips() {
         return ships;
     }
-    public Set<Salvo> getSalvos() {
+    public Set<Salvo> getSalvoes() {
         return salvos;
     }
 
@@ -78,8 +77,8 @@ public class GamePlayer {
         this.salvos = salvos;
     }
 
-    /*public void addShip(Ship ship){
-        ship.setGamePlayer(this);
-        this.ships.add(ship);
-    }*/
+    public int getLastTurn(){
+        Salvo salvo = Collections.max(this.getSalvoes(), Comparator.comparing(salvo1 -> salvo1.getTurn()));
+        return salvo.getTurn();
+    }
 }

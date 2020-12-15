@@ -24,11 +24,11 @@ public class AppController {
 
     //Conecto los repositorios.
     @Autowired
-    GameRepository gameRepository;
+    private GameRepository gameRepository;
     @Autowired
-    PlayerRepository playerRepository;
+    private PlayerRepository playerRepository;
     @Autowired
-    GamePlayerRepository gamePlayerRepository;
+    private GamePlayerRepository gamePlayerRepository;
 
     /*Creo el mapeo para cada url. Estoy utilizando métodos estáticos, por lo que no es
     necesario instanciar cada dto.
@@ -70,11 +70,9 @@ public class AppController {
                 .collect(Collectors.toList());
     }
     @RequestMapping(path = "/game_view/{idgame_player}", method = RequestMethod.GET)
-    private ResponseEntity<Map<String, Object>> getGamePlayerAll(@PathVariable long idgame_player, Authentication authentication){
+    private ResponseEntity<Map<String, Object>> getGamePlayerAll(@PathVariable long idgame_player, Authentication authentication) throws Exception {
         if (Util.isGuest(authentication)){
-            Map<String, Object> dto = new LinkedHashMap<>();
-            dto.put("error","Guest.");
-            return new ResponseEntity<>(dto, HttpStatus.FORBIDDEN);
+            return new ResponseEntity<>(Util.makeMap("error","Is guest."), HttpStatus.FORBIDDEN);
         }else {
             GamePlayer gameplayer = gamePlayerRepository.findById(idgame_player).get();
             Player player = playerRepository.findByEmail(authentication.getName());

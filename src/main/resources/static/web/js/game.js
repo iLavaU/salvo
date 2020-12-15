@@ -241,7 +241,6 @@ function showSelf (gamePlayerData) {
           //          console.log("Opponent salvo on " + location);
                 }
             }
-
         });
     });
 
@@ -398,7 +397,7 @@ function makeSalvoJSON() {
         salvoPositions.push(salvo5cellID);
     }
     salvoObject = {
-        salvoLocations : salvoPositions
+        locations : salvoPositions
     }
 
     salvoJSON = JSON.stringify(salvoObject);

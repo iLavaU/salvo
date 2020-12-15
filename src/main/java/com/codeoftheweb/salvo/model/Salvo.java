@@ -1,10 +1,13 @@
 package com.codeoftheweb.salvo.model;
 
+import com.codeoftheweb.salvo.util.Util;
 import org.hibernate.annotations.GenericGenerator;
 
 import javax.persistence.*;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Set;
+import java.util.stream.Collectors;
 
 @Entity
 public class Salvo {
@@ -21,11 +24,10 @@ public class Salvo {
 
     @ElementCollection
     @Column(name="location")
-    private List<String> locations = new ArrayList<>();
+    private List<String> locations;
 
     //Constructores
-    public Salvo() {
-    }
+    public Salvo() {}
     public Salvo(int turn, GamePlayer gamePlayer, List<String> locations) {
         this.turn = turn;
         this.gamePlayer = gamePlayer;
@@ -56,4 +58,6 @@ public class Salvo {
     public void setLocations(List<String> locations) {
         this.locations = locations;
     }
+
+
 }

@@ -54,14 +54,15 @@ $('.login-form').on('submit', function (event) {
                         pwd: $("#newPassword").val() })
                     .done(function() {
                         console.log("login ok");
+                        closeMyModal();
                         $('#loginSuccess').show( "slow" ).delay(2500).hide( "slow" );
                         $("#newUsername").val("");
                         $("#newPassword").val("");
                         $("#newName").val("");
-                        closeMyModal();
-                        playLoginSound();
                         updateJson();
-
+                        playLoginSound();
+                        $("#createGameForm").show();
+                        
                     })
                     .fail(function() {
                         console.log("login failed");
@@ -329,7 +330,7 @@ function showScoreBoard(playersArray) {
 }
 
 function closeMyModal(){
-    $("#myModal").modal('toggle');
+    $("#myModal").modal('hide');
 }
 
 
