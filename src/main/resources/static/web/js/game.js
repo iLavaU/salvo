@@ -83,7 +83,7 @@ function refreshGameView(_url) {
             }
 
             if (gamePlayerData.gameState === "WAITINGFOROPP"){
-                $('#battleGrids').show('puff', 'slow');
+                $('#battleGrids').show('puff', 'slow'); 
                 waitState = true;
                 setTimeout(
                     function()
@@ -100,6 +100,7 @@ function refreshGameView(_url) {
                 makeGameRecordTable(gamePlayerData.hits.self, "gameRecordSelfTable");
                 $('#battleGrids').show('puff', 'slow');
                 $('#gameRecordBlock').show('puff', 'slow');
+                //displayModal("WON","BOTH");
                 console.log("yes you won");
             }
             if (gamePlayerData.gameState === "TIE"){

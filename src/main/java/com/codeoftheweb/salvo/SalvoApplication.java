@@ -163,22 +163,22 @@ public class SalvoApplication {
 			saRepository.save(salvo22);
 			saRepository.save(salvo23);
 			saRepository.save(salvo24);
-			saRepository.save(salvo3);
-			saRepository.save(salvo4);
-			saRepository.save(salvo5);
-			saRepository.save(salvo6);
-			scRepository.save(score11);
-			scRepository.save(score21);
-			scRepository.save(score32);
-			scRepository.save(score42);
-			scRepository.save(score53);
-			scRepository.save(score63);
-			scRepository.save(score14);
-			scRepository.save(score24);
-			scRepository.save(score35);
-			scRepository.save(score45);
-			scRepository.save(score56);
-			scRepository.save(score66);
+//			saRepository.save(salvo3);
+//			saRepository.save(salvo4);
+//			saRepository.save(salvo5);
+//			saRepository.save(salvo6);
+//			scRepository.save(score11);
+//			scRepository.save(score21);
+//			scRepository.save(score32);
+//			scRepository.save(score42);
+//			scRepository.save(score53);
+//			scRepository.save(score63);
+//			scRepository.save(score14);
+//			scRepository.save(score24);
+//			scRepository.save(score35);
+//			scRepository.save(score45);
+//			scRepository.save(score56);
+//			scRepository.save(score66);
 
 		};
 	}

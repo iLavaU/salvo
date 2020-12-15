@@ -29,7 +29,7 @@ public class HitsDTO {
         this.gamePlayer = gamePlayer;
     }
 
-    public Map<String, Object> makeHitsDTO() throws Exception {
+    public Map<String, Object> makeHitsDTO() {
         Map<String, Object> dto = new LinkedHashMap<>();
 
         if(gamePlayer.getGame().getGamePlayers().size()==2){

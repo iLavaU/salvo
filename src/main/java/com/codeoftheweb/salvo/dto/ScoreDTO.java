@@ -1,9 +1,11 @@
 package com.codeoftheweb.salvo.dto;
 
 import com.codeoftheweb.salvo.model.Score;
+import org.springframework.beans.factory.annotation.Autowired;
 
 import java.util.LinkedHashMap;
 import java.util.Map;
+
 
 public class ScoreDTO {
     private Score score;
@@ -28,4 +30,6 @@ public class ScoreDTO {
 
         return dto;
     }
+
+
 }

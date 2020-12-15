@@ -4,10 +4,12 @@ import com.codeoftheweb.salvo.dto.GamePlayerDTO;
 import com.codeoftheweb.salvo.dto.PlayerDTO;
 import com.codeoftheweb.salvo.model.Game;
 import com.codeoftheweb.salvo.model.Player;
+import com.codeoftheweb.salvo.model.Score;
 import com.codeoftheweb.salvo.repository.GameRepository;
 import com.codeoftheweb.salvo.model.GamePlayer;
 import com.codeoftheweb.salvo.repository.GamePlayerRepository;
 import com.codeoftheweb.salvo.repository.PlayerRepository;
+import com.codeoftheweb.salvo.repository.ScoreRepository;
 import com.codeoftheweb.salvo.util.Util;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -15,6 +17,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.Authentication;
 import org.springframework.web.bind.annotation.*;
 
+import java.time.LocalDateTime;
 import java.util.*;
 import java.util.stream.Collectors;
 
@@ -29,6 +32,8 @@ public class AppController {
     private PlayerRepository playerRepository;
     @Autowired
     private GamePlayerRepository gamePlayerRepository;
+    @Autowired
+    private ScoreRepository scoreRepository;
 
     /*Creo el mapeo para cada url. Estoy utilizando métodos estáticos, por lo que no es
     necesario instanciar cada dto.
@@ -77,7 +82,15 @@ public class AppController {
             GamePlayer gameplayer = gamePlayerRepository.findById(idgame_player).get();
             Player player = playerRepository.findByEmail(authentication.getName());
             if (gameplayer.getPlayer().getId() == player.getId()){
-                return new ResponseEntity<>(GamePlayerDTO.makeGameViewDTO(gameplayer), HttpStatus.CREATED);
+                ResponseEntity<Map<String, Object>> response = new ResponseEntity<>(GamePlayerDTO.makeGameViewDTO(gameplayer), HttpStatus.CREATED);
+                if (Util.getGameState(gameplayer)=="WON" || Util.getGameState(gameplayer)=="LOST" || Util.getGameState(gameplayer)=="TIED"){
+                    Set<Score> tryScores = gameplayer.getGame().getScores();
+                    if ((tryScores.size() == 0) || (tryScores.size() == 1)){
+                        Score score = Util.createScores(gameplayer,Util.getGameState(gameplayer));
+                        scoreRepository.save(score);
+                    }
+                }
+                return response;
             }
             return new ResponseEntity<>(Util.makeMap("error", "You can't see the enemy's board. You are logged in as " + player.getName() +
                     " and want to see " + gameplayer.getPlayer().getName() + "'s board."), HttpStatus.FORBIDDEN);
@@ -92,4 +105,6 @@ public class AppController {
                     return playerDTO.makePlayerScoreDTO();})
                 .collect(Collectors.toList());
     }
+
+
 }
