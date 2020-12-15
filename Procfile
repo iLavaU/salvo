@@ -1,1 +1,1 @@
-web: java $JAVA_OPTS -cp target/classes:target/dependency/* com.codeoftheweb.salvo.SalvoApplication
+web: java $JAVA_OPTS -cp target/classes:target/dependency/* com.codeoftheweb.salvo.SalvoApplication.SalvoApplication
