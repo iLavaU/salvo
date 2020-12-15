@@ -85,7 +85,7 @@ public class AppController {
                 ResponseEntity<Map<String, Object>> response = new ResponseEntity<>(GamePlayerDTO.makeGameViewDTO(gameplayer), HttpStatus.CREATED);
                 if (Util.getGameState(gameplayer)=="WON" || Util.getGameState(gameplayer)=="LOST" || Util.getGameState(gameplayer)=="TIED"){
                     Set<Score> tryScores = gameplayer.getGame().getScores();
-                    if ((tryScores.size() == 0) || (tryScores.size() == 1)){
+                    if ((tryScores.size() <= 1)){
                         Score score = Util.createScores(gameplayer,Util.getGameState(gameplayer));
                         scoreRepository.save(score);
                     }
