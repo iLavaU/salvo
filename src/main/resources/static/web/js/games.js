@@ -27,7 +27,6 @@ $('.login-form').on('submit', function (event) {
                 updateJson();
                 $("#createGameForm").show();
                 playLoginSound();
-
             })
             .fail(function() {
                 console.log("login failed");
@@ -192,7 +191,6 @@ function showGamesTable(gamesData) {
             var row = $('<tr></tr>').prependTo(table);
             $('<td class="textCenter">' + gamesData[i].id + '</td>').appendTo(row);
             $('<td>' + DateCreated + '</td>').appendTo(row);
-
 
             for (var j = 0; j < gamesData[i].gamePlayers.length; j++) {
 

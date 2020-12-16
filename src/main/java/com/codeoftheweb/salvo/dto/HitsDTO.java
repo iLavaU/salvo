@@ -32,7 +32,7 @@ public class HitsDTO {
     public Map<String, Object> makeHitsDTO() {
         Map<String, Object> dto = new LinkedHashMap<>();
 
-        if(gamePlayer.getGame().getGamePlayers().size()==2){
+        if(this.gamePlayer.getGame().getGamePlayers().size()==2){
             dto.put("opponent", this.gamePlayer.getSalvoes()
                     .stream()
                     .map(salvo1 -> this.makeHitDTO(salvo1,this.gamePlayer))

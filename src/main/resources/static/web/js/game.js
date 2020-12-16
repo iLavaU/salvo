@@ -100,7 +100,7 @@ function refreshGameView(_url) {
                 makeGameRecordTable(gamePlayerData.hits.self, "gameRecordSelfTable");
                 $('#battleGrids').show('puff', 'slow');
                 $('#gameRecordBlock').show('puff', 'slow');
-                //displayModal("WON","BOTH");
+                displayModal("WON");
                 console.log("yes you won");
             }
             if (gamePlayerData.gameState === "TIE"){
@@ -109,6 +109,7 @@ function refreshGameView(_url) {
                 makeGameRecordTable(gamePlayerData.hits.self, "gameRecordSelfTable");
                 $('#battleGrids').show('puff', 'slow');
                 $('#gameRecordBlock').show('puff', 'slow');
+                displayModal("TIES");
                 console.log("TIED MATCH");
             }
             if (gamePlayerData.gameState === "LOST"){
@@ -117,6 +118,7 @@ function refreshGameView(_url) {
                 makeGameRecordTable(gamePlayerData.hits.self, "gameRecordSelfTable");
                 $('#battleGrids').show('puff', 'slow');
                 $('#gameRecordBlock').show('puff', 'slow');
+                displayModal("LOST");
                 console.log("OH YOU LOST");
             }
             if (gamePlayerData.gameState === "WAIT"){
