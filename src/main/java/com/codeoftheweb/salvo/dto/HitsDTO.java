@@ -68,11 +68,11 @@ public class HitsDTO {
             int patrolboatHits = Util.getShipHits(salvo,Util.getShipByType(opponent.getShips(),"patrolboat"));
             int battleshipHits = Util.getShipHits(salvo,Util.getShipByType(opponent.getShips(),"battleship"));
 
-            int historicCarrierHits = Util.getHistoricShipHits(Util.getShipByType(opponent.getShips(),"carrier"));
-            int historicBattleshipHits = Util.getHistoricShipHits(Util.getShipByType(opponent.getShips(),"battleship"));
-            int historicSubmarineHits = Util.getHistoricShipHits(Util.getShipByType(opponent.getShips(),"submarine"));
-            int historicDestroyerHits = Util.getHistoricShipHits(Util.getShipByType(opponent.getShips(),"destroyer"));
-            int historicPatrolboatHits = Util.getHistoricShipHits(Util.getShipByType(opponent.getShips(),"patrolboat"));
+            int historicCarrierHits = Util.getHistoricShipHits(Util.getShipByType(opponent.getShips(),"carrier"),gamePlayer.getSalvoes());
+            int historicBattleshipHits = Util.getHistoricShipHits(Util.getShipByType(opponent.getShips(),"battleship"),gamePlayer.getSalvoes());
+            int historicSubmarineHits = Util.getHistoricShipHits(Util.getShipByType(opponent.getShips(),"submarine"),gamePlayer.getSalvoes());
+            int historicDestroyerHits = Util.getHistoricShipHits(Util.getShipByType(opponent.getShips(),"destroyer"),gamePlayer.getSalvoes());
+            int historicPatrolboatHits = Util.getHistoricShipHits(Util.getShipByType(opponent.getShips(),"patrolboat"),gamePlayer.getSalvoes());
 
             damages.put("carrierHits", carrierHits);
             damages.put("battleshipHits", battleshipHits);

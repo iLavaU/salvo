@@ -88,7 +88,7 @@ public class Util {
             List<String> locations = ship.getLocations();
             int i =0;
             for (String location: locations) {
-                if (salvoLocations.contains(location) && !(isHit.get(i))){
+                if (salvoLocations.contains(location)){
                     hits.add(location);
                 }
             }
@@ -96,14 +96,14 @@ public class Util {
         }
         return hits;
     }
-    public static int getShipHits(Salvo salvo, Ship ship){
-        List<String> salvoLocations = salvo.getLocations();
-        List<String> shipLocations = ship.getLocations();
-        salvoLocations.retainAll(shipLocations);
-
-        int hitsAmount = salvoLocations.size();
-        return hitsAmount;
-    }
+//    public static int getShipHits(Salvo salvo, Ship ship){
+//        List<String> salvoLocations = salvo.getLocations();
+//        List<String> shipLocations = ship.getLocations();
+//        salvoLocations.retainAll(shipLocations);
+//
+//        int hitsAmount = salvoLocations.size();
+//        return hitsAmount;
+//    }
     public static int getShipHits(Salvo salvo, Optional<Ship> ship){
         List<String> salvoLocations = new ArrayList<>();
         salvoLocations.addAll(salvo.getLocations());
@@ -114,7 +114,7 @@ public class Util {
             List<Boolean> locationIsHit = newShip.getLocationIsHit();
             int i = 0;
             for (String location: shipLocations) {
-                if (salvoLocations.contains(location)  &&  !(locationIsHit.get(i))){
+                if (salvoLocations.contains(location)){
                     hitsAmount++;
                     locationIsHit.set(i,true);
                 }
@@ -124,15 +124,19 @@ public class Util {
         }
         return hitsAmount;
     }
-    public static int getHistoricShipHits(Optional<Ship> ship){
-        int hits;
+    public static int getHistoricShipHits(Optional<Ship> ship,Set<Salvo> salvoes){
         if (ship.isPresent()){
-            Ship newShip = ship.get();
-            hits = newShip.getLocationIsHit()
+            List<String> shipLocations = ship.get().getLocations();
+            List<String> hitLocations = new ArrayList<>();
+            hitLocations.addAll(shipLocations);
+            int lastTurn = salvoes.size();
+            List<String> salvoesUntilNow = salvoes
                     .stream()
-                    .filter(aBoolean -> aBoolean == true)
-                    .collect(Collectors.toList()).size();
-            return hits;
+                    .filter(salvo -> salvo.getTurn()<=lastTurn)
+                    .flatMap(salvo -> salvo.getLocations().stream())
+                    .collect(Collectors.toList());
+            hitLocations.retainAll(salvoesUntilNow);
+            return hitLocations.size();
         }
         return 0;
     }
