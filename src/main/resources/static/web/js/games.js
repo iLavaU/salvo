@@ -27,6 +27,8 @@ $('.login-form').on('submit', function (event) {
                 updateJson();
                 $("#createGameForm").show();
                 playLoginSound();
+                $("#login").delay(2000).hide( "slow" );
+                $("#signup").delay(2000).hide( "slow" );
             })
             .fail(function() {
                 console.log("login failed");
@@ -53,14 +55,17 @@ $('.login-form').on('submit', function (event) {
                         pwd: $("#newPassword").val() })
                     .done(function() {
                         console.log("login ok");
-                        closeMyModal();
+                        $("#myModal").modal('hide');
                         $('#loginSuccess').show( "slow" ).delay(2500).hide( "slow" );
                         $("#newUsername").val("");
                         $("#newPassword").val("");
                         $("#newName").val("");
                         updateJson();
+                        $("#login").delay(2000).hide( "slow" );
+                        $("#signup").delay(2000).hide( "slow" );
                         playLoginSound();
                         $("#createGameForm").show();
+
                         
                     })
                     .fail(function() {
@@ -100,6 +105,8 @@ $('#logout-form').on('submit', function (event) {
                 console.log("logout ok");
                 $('#logoutSuccess').show("slow").delay(2000).hide("slow");
                 updateJson();
+                $("#login").show( "slow" );
+                $("#signup").show( "slow" );
             })
             .fail(function () {
                 console.log("logout fails");
@@ -181,6 +188,11 @@ function showGamesTable(gamesData) {
         var table = "#gamesList tbody";
         var gpid;
         $(table).empty();
+        var len = gamesData.length;
+        if (gamesData.length<1) {
+            var row = $('<tr></tr>').prependTo(table);
+            $('<td colspan="5" class="text-center"> No games yet. </td>').appendTo(row);
+        }
         for (var i = 0; i < gamesData.length; i++) {
 
             var isLoggedPlayer = false;
@@ -191,8 +203,10 @@ function showGamesTable(gamesData) {
             var row = $('<tr></tr>').prependTo(table);
             $('<td class="textCenter">' + gamesData[i].id + '</td>').appendTo(row);
             $('<td>' + DateCreated + '</td>').appendTo(row);
+            ;
 
             for (var j = 0; j < gamesData[i].gamePlayers.length; j++) {
+                
 
 
                 if (gamesData[i].gamePlayers.length == 2) {
@@ -299,7 +313,15 @@ function showScoreBoard(playersArray) {
 
         var table = "#scoreBoard tbody";
         $(table).empty();
-
+        var len = playersArray.length;
+        console.log(playersArray)
+        if (playersArray.length==0) {
+            var row = $('<tr></tr>').prependTo(table);
+            $('<td colspan="5" class="text-center"> No games yet. </td>').appendTo(row);
+        }
+        
+            
+        
         for (var m = 0; m < playersArray.length; m++) {
             var countWon = 0;
             var countLost = 0;
@@ -323,16 +345,9 @@ function showScoreBoard(playersArray) {
                 $("<td class='textCenter'>" + countWon + '</td>').appendTo(row);
                 $("<td class='textCenter'>" + countLost + '</td>').appendTo(row);
                 $("<td class='textCenter'>" + countTied + '</td>').appendTo(row);
+            }else{
+                var row = $('<tr></tr>').appendTo(table);
+                $('<td colspan="5" class="textCenter" >' + playersArray[m].email +' has no games finished yet.</td>').appendTo(row);
             }
-        }
+    }
 }
-
-function closeMyModal(){
-    $("#myModal").modal('hide');
-}
-
-
-
-
-
-
