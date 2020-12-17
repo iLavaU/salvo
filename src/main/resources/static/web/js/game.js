@@ -18,6 +18,9 @@ var salvoPositions = [];
 refreshGameView(makeUrl());
 var waitState = false;
 
+$(".backToGames").on('click',function(){
+    location.href = "/web/games.html";
+})
 
 $('#logoutButton').on('click', function (event) {
     event.preventDefault();
@@ -38,6 +41,7 @@ $('#logoutButton').on('click', function (event) {
 
         });
 });
+
 
 function getParameterByName(name) {
     var match = RegExp('[?&]' + name + '=([^&]*)').exec(window.location.search);
