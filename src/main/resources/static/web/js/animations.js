@@ -1,4 +1,4 @@
-function setSalvoButtonAnim(){
+function setSalvoAnim(){
     let salvoButton = document.getElementById('postSalvo');
     var salvo = bodymovin.loadAnimation({
         container: salvoButton,
@@ -7,18 +7,11 @@ function setSalvoButtonAnim(){
         loop: false,
         renderer: 'svg',
         rendererSettings: {
+            //This is for the salvov2.json:
+            //viewBoxSize: '10 -5 400 190',
             viewBoxSize: '40 60 450 190',
             viewBoxOnly: true
-
         }
     })
-
-    salvoButton.addEventListener('mouseenter', () => {
-        salvo.setDirection(1);
-        salvo.play();
-    })
-    salvoButton.addEventListener('mouseleave', () => {
-        salvo.setDirection(-1);
-        salvo.play();
-    })
+    return salvo;
 }

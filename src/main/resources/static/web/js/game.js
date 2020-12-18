@@ -4,8 +4,6 @@ developed by Berenguer Pou / Ubiqum Barcelona (berenguer@ubiqum.com)
 Last update: June, 11, 2018
 */
 
-let loaded=false;
-var animData;
 var gamePlayerData = {};
 var errorMsg;
 var you = "";
@@ -13,7 +11,7 @@ var viewer = "";
 var youID = "";
 var salvoJSON;
 var salvoPositions = [];
-
+let salvoAnim;
 
 refreshGameView(makeUrl());
 var waitState = false;
@@ -90,7 +88,7 @@ function refreshGameView(_url) {
             }
 
             if (gamePlayerData.gameState === "WAITINGFOROPP"){
-                $('#battleGrids').show('puff', 'slow'); 
+                $('#battleGrids').show('puff', 'slow');
                 waitState = true;
                 setTimeout(
                     function()
@@ -152,12 +150,11 @@ function refreshGameView(_url) {
                     '                <div class="droppable salvoCharger caught--it" id="salvoout3"><div class="draggable" id="salvo3"></div></div>\n' +
                     '                <div class="droppable salvoCharger caught--it" id="salvoout4"><div class="draggable" id="salvo4"></div></div>\n' +
                     '                <div class="droppable salvoCharger caught--it" id="salvoout5"><div class="draggable" id="salvo5"></div></div>\n' +
-                    '                <div class="textCenter"><button class="btn btn-warning" id="postSalvo"></button></div>\n' +
+                    '                <div class="textCenter"><button class="btn btn-light" id="postSalvo"></button></div>\n' +
                     '            </div>');
-                if(!loaded){
-                    setSalvoButtonAnim();
-                    loaded = true;
-                }
+
+                    salvoAnim = setSalvoAnim();
+                    playSalvoAnim();
 
                 resetSalvoCellIds();
 
@@ -514,23 +511,27 @@ function getTurn(gamePlayerData) {
     }
     return turn;
 }
-//function setSalvoButton(){
-//    debugger;
-//    var salvoButton = document.getElementById('postSalvo');
-//    animData = lottie.loadAnimation({
-//    container: salvoButton,
-//        renderer: 'svg',
-//        loop: false,
-//        autoplay: false,
-//        path: 'img/salvo.json',
-//        rendererSettings: {
-//            preserveAspectRatio: 'xMidYMid meet',
-//        }
-//    });
-//   $("#postSalvo").mouseenter(function()
-//       animData.play();
-//   })
-//}
+function playSalvoAnim(){
+    let salvoButton = document.getElementById('postSalvo');
+    salvoButton.addEventListener('mouseenter', () => {
+        makeSalvoJSON();
+        salvoAnim.setDirection(1);
+        if(salvoPositions.length > 0){
+            $("#postSalvo").removeClass('btn-light')
+            $("#postSalvo").addClass('btn-warning')
+            salvoAnim.play();
+        }
+    })
+    salvoButton.addEventListener('mouseleave', () => {
+        makeSalvoJSON();
+        salvoAnim.setDirection(-1);
+        if(salvoPositions.length > 0){
+            $("#postSalvo").removeClass('btn-warning')
+            $("#postSalvo").addClass('btn-light')
+            salvoAnim.play();
+        }
+    })
+}
 
 
 
